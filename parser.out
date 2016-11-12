@@ -7,46 +7,40 @@ Unused terminals:
 Grammar
 
 Rule 0     S' -> expression
-Rule 1     expression -> expression AND expression
-Rule 2     expression -> expression OR expression
-Rule 3     expression -> expression IMPLIES expression
-Rule 4     expression -> OB expression OR expression CB
-Rule 5     expression -> OB expression AND expression CB
-Rule 6     expression -> OB expression IMPLIES expression CB
-Rule 7     expression -> NAME OB expression CB
-Rule 8     expression -> expression COMMA expression
-Rule 9     expression -> NAME
+Rule 1     expression -> OB expression OR expression CB
+Rule 2     expression -> OB expression AND expression CB
+Rule 3     expression -> OB expression IMPLIES expression CB
+Rule 4     expression -> NAME OB expression CB
+Rule 5     expression -> expression COMMA expression
+Rule 6     expression -> NAME
 
 Terminals, with rules where they appear
 
-AND                  : 1 5
-CB                   : 4 5 6 7
-COMMA                : 8
-IMPLIES              : 3 6
-NAME                 : 7 9
+AND                  : 2
+CB                   : 1 2 3 4
+COMMA                : 5
+IMPLIES              : 3
+NAME                 : 4 6
 NOT                  : 
-OB                   : 4 5 6 7
-OR                   : 2 4
+OB                   : 1 2 3 4
+OR                   : 1
 error                : 
 
 Nonterminals, with rules where they appear
 
-expression           : 1 1 2 2 3 3 4 4 5 5 6 6 7 8 8 0
+expression           : 1 1 2 2 3 3 4 5 5 0
 
 Parsing method: LALR
 
 state 0
 
     (0) S' -> . expression
-    (1) expression -> . expression AND expression
-    (2) expression -> . expression OR expression
-    (3) expression -> . expression IMPLIES expression
-    (4) expression -> . OB expression OR expression CB
-    (5) expression -> . OB expression AND expression CB
-    (6) expression -> . OB expression IMPLIES expression CB
-    (7) expression -> . NAME OB expression CB
-    (8) expression -> . expression COMMA expression
-    (9) expression -> . NAME
+    (1) expression -> . OB expression OR expression CB
+    (2) expression -> . OB expression AND expression CB
+    (3) expression -> . OB expression IMPLIES expression CB
+    (4) expression -> . NAME OB expression CB
+    (5) expression -> . expression COMMA expression
+    (6) expression -> . NAME
 
     OB              shift and go to state 2
     NAME            shift and go to state 1
@@ -55,32 +49,29 @@ state 0
 
 state 1
 
-    (7) expression -> NAME . OB expression CB
-    (9) expression -> NAME .
+    (4) expression -> NAME . OB expression CB
+    (6) expression -> NAME .
 
     OB              shift and go to state 4
-    CB              reduce using rule 9 (expression -> NAME .)
-    AND             reduce using rule 9 (expression -> NAME .)
-    OR              reduce using rule 9 (expression -> NAME .)
-    IMPLIES         reduce using rule 9 (expression -> NAME .)
-    COMMA           reduce using rule 9 (expression -> NAME .)
-    $end            reduce using rule 9 (expression -> NAME .)
+    CB              reduce using rule 6 (expression -> NAME .)
+    COMMA           reduce using rule 6 (expression -> NAME .)
+    OR              reduce using rule 6 (expression -> NAME .)
+    AND             reduce using rule 6 (expression -> NAME .)
+    IMPLIES         reduce using rule 6 (expression -> NAME .)
+    $end            reduce using rule 6 (expression -> NAME .)
 
 
 state 2
 
-    (4) expression -> OB . expression OR expression CB
-    (5) expression -> OB . expression AND expression CB
-    (6) expression -> OB . expression IMPLIES expression CB
-    (1) expression -> . expression AND expression
-    (2) expression -> . expression OR expression
-    (3) expression -> . expression IMPLIES expression
-    (4) expression -> . OB expression OR expression CB
-    (5) expression -> . OB expression AND expression CB
-    (6) expression -> . OB expression IMPLIES expression CB
-    (7) expression -> . NAME OB expression CB
-    (8) expression -> . expression COMMA expression
-    (9) expression -> . NAME
+    (1) expression -> OB . expression OR expression CB
+    (2) expression -> OB . expression AND expression CB
+    (3) expression -> OB . expression IMPLIES expression CB
+    (1) expression -> . OB expression OR expression CB
+    (2) expression -> . OB expression AND expression CB
+    (3) expression -> . OB expression IMPLIES expression CB
+    (4) expression -> . NAME OB expression CB
+    (5) expression -> . expression COMMA expression
+    (6) expression -> . NAME
 
     OB              shift and go to state 2
     NAME            shift and go to state 1
@@ -90,445 +81,199 @@ state 2
 state 3
 
     (0) S' -> expression .
-    (1) expression -> expression . AND expression
-    (2) expression -> expression . OR expression
-    (3) expression -> expression . IMPLIES expression
-    (8) expression -> expression . COMMA expression
+    (5) expression -> expression . COMMA expression
 
-    AND             shift and go to state 6
-    OR              shift and go to state 9
-    IMPLIES         shift and go to state 7
-    COMMA           shift and go to state 8
+    COMMA           shift and go to state 6
 
 
 state 4
 
-    (7) expression -> NAME OB . expression CB
-    (1) expression -> . expression AND expression
-    (2) expression -> . expression OR expression
-    (3) expression -> . expression IMPLIES expression
-    (4) expression -> . OB expression OR expression CB
-    (5) expression -> . OB expression AND expression CB
-    (6) expression -> . OB expression IMPLIES expression CB
-    (7) expression -> . NAME OB expression CB
-    (8) expression -> . expression COMMA expression
-    (9) expression -> . NAME
+    (4) expression -> NAME OB . expression CB
+    (1) expression -> . OB expression OR expression CB
+    (2) expression -> . OB expression AND expression CB
+    (3) expression -> . OB expression IMPLIES expression CB
+    (4) expression -> . NAME OB expression CB
+    (5) expression -> . expression COMMA expression
+    (6) expression -> . NAME
 
     OB              shift and go to state 2
     NAME            shift and go to state 1
 
-    expression                     shift and go to state 10
+    expression                     shift and go to state 7
 
 state 5
 
-    (4) expression -> OB expression . OR expression CB
-    (5) expression -> OB expression . AND expression CB
-    (6) expression -> OB expression . IMPLIES expression CB
-    (1) expression -> expression . AND expression
-    (2) expression -> expression . OR expression
-    (3) expression -> expression . IMPLIES expression
-    (8) expression -> expression . COMMA expression
+    (1) expression -> OB expression . OR expression CB
+    (2) expression -> OB expression . AND expression CB
+    (3) expression -> OB expression . IMPLIES expression CB
+    (5) expression -> expression . COMMA expression
 
-    OR              shift and go to state 13
-    AND             shift and go to state 11
-    IMPLIES         shift and go to state 12
-    COMMA           shift and go to state 8
+    OR              shift and go to state 10
+    AND             shift and go to state 8
+    IMPLIES         shift and go to state 9
+    COMMA           shift and go to state 6
 
 
 state 6
 
-    (1) expression -> expression AND . expression
-    (1) expression -> . expression AND expression
-    (2) expression -> . expression OR expression
-    (3) expression -> . expression IMPLIES expression
-    (4) expression -> . OB expression OR expression CB
-    (5) expression -> . OB expression AND expression CB
-    (6) expression -> . OB expression IMPLIES expression CB
-    (7) expression -> . NAME OB expression CB
-    (8) expression -> . expression COMMA expression
-    (9) expression -> . NAME
+    (5) expression -> expression COMMA . expression
+    (1) expression -> . OB expression OR expression CB
+    (2) expression -> . OB expression AND expression CB
+    (3) expression -> . OB expression IMPLIES expression CB
+    (4) expression -> . NAME OB expression CB
+    (5) expression -> . expression COMMA expression
+    (6) expression -> . NAME
+
+    OB              shift and go to state 2
+    NAME            shift and go to state 1
+
+    expression                     shift and go to state 11
+
+state 7
+
+    (4) expression -> NAME OB expression . CB
+    (5) expression -> expression . COMMA expression
+
+    CB              shift and go to state 12
+    COMMA           shift and go to state 6
+
+
+state 8
+
+    (2) expression -> OB expression AND . expression CB
+    (1) expression -> . OB expression OR expression CB
+    (2) expression -> . OB expression AND expression CB
+    (3) expression -> . OB expression IMPLIES expression CB
+    (4) expression -> . NAME OB expression CB
+    (5) expression -> . expression COMMA expression
+    (6) expression -> . NAME
+
+    OB              shift and go to state 2
+    NAME            shift and go to state 1
+
+    expression                     shift and go to state 13
+
+state 9
+
+    (3) expression -> OB expression IMPLIES . expression CB
+    (1) expression -> . OB expression OR expression CB
+    (2) expression -> . OB expression AND expression CB
+    (3) expression -> . OB expression IMPLIES expression CB
+    (4) expression -> . NAME OB expression CB
+    (5) expression -> . expression COMMA expression
+    (6) expression -> . NAME
 
     OB              shift and go to state 2
     NAME            shift and go to state 1
 
     expression                     shift and go to state 14
 
-state 7
+state 10
 
-    (3) expression -> expression IMPLIES . expression
-    (1) expression -> . expression AND expression
-    (2) expression -> . expression OR expression
-    (3) expression -> . expression IMPLIES expression
-    (4) expression -> . OB expression OR expression CB
-    (5) expression -> . OB expression AND expression CB
-    (6) expression -> . OB expression IMPLIES expression CB
-    (7) expression -> . NAME OB expression CB
-    (8) expression -> . expression COMMA expression
-    (9) expression -> . NAME
+    (1) expression -> OB expression OR . expression CB
+    (1) expression -> . OB expression OR expression CB
+    (2) expression -> . OB expression AND expression CB
+    (3) expression -> . OB expression IMPLIES expression CB
+    (4) expression -> . NAME OB expression CB
+    (5) expression -> . expression COMMA expression
+    (6) expression -> . NAME
 
     OB              shift and go to state 2
     NAME            shift and go to state 1
 
     expression                     shift and go to state 15
 
-state 8
-
-    (8) expression -> expression COMMA . expression
-    (1) expression -> . expression AND expression
-    (2) expression -> . expression OR expression
-    (3) expression -> . expression IMPLIES expression
-    (4) expression -> . OB expression OR expression CB
-    (5) expression -> . OB expression AND expression CB
-    (6) expression -> . OB expression IMPLIES expression CB
-    (7) expression -> . NAME OB expression CB
-    (8) expression -> . expression COMMA expression
-    (9) expression -> . NAME
-
-    OB              shift and go to state 2
-    NAME            shift and go to state 1
-
-    expression                     shift and go to state 16
-
-state 9
-
-    (2) expression -> expression OR . expression
-    (1) expression -> . expression AND expression
-    (2) expression -> . expression OR expression
-    (3) expression -> . expression IMPLIES expression
-    (4) expression -> . OB expression OR expression CB
-    (5) expression -> . OB expression AND expression CB
-    (6) expression -> . OB expression IMPLIES expression CB
-    (7) expression -> . NAME OB expression CB
-    (8) expression -> . expression COMMA expression
-    (9) expression -> . NAME
-
-    OB              shift and go to state 2
-    NAME            shift and go to state 1
-
-    expression                     shift and go to state 17
-
-state 10
-
-    (7) expression -> NAME OB expression . CB
-    (1) expression -> expression . AND expression
-    (2) expression -> expression . OR expression
-    (3) expression -> expression . IMPLIES expression
-    (8) expression -> expression . COMMA expression
-
-    CB              shift and go to state 18
-    AND             shift and go to state 6
-    OR              shift and go to state 9
-    IMPLIES         shift and go to state 7
-    COMMA           shift and go to state 8
-
-
 state 11
 
-    (5) expression -> OB expression AND . expression CB
-    (1) expression -> expression AND . expression
-    (1) expression -> . expression AND expression
-    (2) expression -> . expression OR expression
-    (3) expression -> . expression IMPLIES expression
-    (4) expression -> . OB expression OR expression CB
-    (5) expression -> . OB expression AND expression CB
-    (6) expression -> . OB expression IMPLIES expression CB
-    (7) expression -> . NAME OB expression CB
-    (8) expression -> . expression COMMA expression
-    (9) expression -> . NAME
+    (5) expression -> expression COMMA expression .
+    (5) expression -> expression . COMMA expression
 
-    OB              shift and go to state 2
-    NAME            shift and go to state 1
+  ! shift/reduce conflict for COMMA resolved as shift
+    CB              reduce using rule 5 (expression -> expression COMMA expression .)
+    OR              reduce using rule 5 (expression -> expression COMMA expression .)
+    AND             reduce using rule 5 (expression -> expression COMMA expression .)
+    IMPLIES         reduce using rule 5 (expression -> expression COMMA expression .)
+    $end            reduce using rule 5 (expression -> expression COMMA expression .)
+    COMMA           shift and go to state 6
 
-    expression                     shift and go to state 19
+  ! COMMA           [ reduce using rule 5 (expression -> expression COMMA expression .) ]
+
 
 state 12
 
-    (6) expression -> OB expression IMPLIES . expression CB
-    (3) expression -> expression IMPLIES . expression
-    (1) expression -> . expression AND expression
-    (2) expression -> . expression OR expression
-    (3) expression -> . expression IMPLIES expression
-    (4) expression -> . OB expression OR expression CB
-    (5) expression -> . OB expression AND expression CB
-    (6) expression -> . OB expression IMPLIES expression CB
-    (7) expression -> . NAME OB expression CB
-    (8) expression -> . expression COMMA expression
-    (9) expression -> . NAME
+    (4) expression -> NAME OB expression CB .
 
-    OB              shift and go to state 2
-    NAME            shift and go to state 1
+    CB              reduce using rule 4 (expression -> NAME OB expression CB .)
+    COMMA           reduce using rule 4 (expression -> NAME OB expression CB .)
+    OR              reduce using rule 4 (expression -> NAME OB expression CB .)
+    AND             reduce using rule 4 (expression -> NAME OB expression CB .)
+    IMPLIES         reduce using rule 4 (expression -> NAME OB expression CB .)
+    $end            reduce using rule 4 (expression -> NAME OB expression CB .)
 
-    expression                     shift and go to state 20
 
 state 13
 
-    (4) expression -> OB expression OR . expression CB
-    (2) expression -> expression OR . expression
-    (1) expression -> . expression AND expression
-    (2) expression -> . expression OR expression
-    (3) expression -> . expression IMPLIES expression
-    (4) expression -> . OB expression OR expression CB
-    (5) expression -> . OB expression AND expression CB
-    (6) expression -> . OB expression IMPLIES expression CB
-    (7) expression -> . NAME OB expression CB
-    (8) expression -> . expression COMMA expression
-    (9) expression -> . NAME
+    (2) expression -> OB expression AND expression . CB
+    (5) expression -> expression . COMMA expression
 
-    OB              shift and go to state 2
-    NAME            shift and go to state 1
+    CB              shift and go to state 16
+    COMMA           shift and go to state 6
 
-    expression                     shift and go to state 21
 
 state 14
 
-    (1) expression -> expression AND expression .
-    (1) expression -> expression . AND expression
-    (2) expression -> expression . OR expression
-    (3) expression -> expression . IMPLIES expression
-    (8) expression -> expression . COMMA expression
+    (3) expression -> OB expression IMPLIES expression . CB
+    (5) expression -> expression . COMMA expression
 
-  ! shift/reduce conflict for AND resolved as shift
-  ! shift/reduce conflict for OR resolved as shift
-  ! shift/reduce conflict for IMPLIES resolved as shift
-  ! shift/reduce conflict for COMMA resolved as shift
-    CB              reduce using rule 1 (expression -> expression AND expression .)
-    $end            reduce using rule 1 (expression -> expression AND expression .)
-    AND             shift and go to state 6
-    OR              shift and go to state 9
-    IMPLIES         shift and go to state 7
-    COMMA           shift and go to state 8
-
-  ! AND             [ reduce using rule 1 (expression -> expression AND expression .) ]
-  ! OR              [ reduce using rule 1 (expression -> expression AND expression .) ]
-  ! IMPLIES         [ reduce using rule 1 (expression -> expression AND expression .) ]
-  ! COMMA           [ reduce using rule 1 (expression -> expression AND expression .) ]
+    CB              shift and go to state 17
+    COMMA           shift and go to state 6
 
 
 state 15
 
-    (3) expression -> expression IMPLIES expression .
-    (1) expression -> expression . AND expression
-    (2) expression -> expression . OR expression
-    (3) expression -> expression . IMPLIES expression
-    (8) expression -> expression . COMMA expression
+    (1) expression -> OB expression OR expression . CB
+    (5) expression -> expression . COMMA expression
 
-  ! shift/reduce conflict for AND resolved as shift
-  ! shift/reduce conflict for OR resolved as shift
-  ! shift/reduce conflict for IMPLIES resolved as shift
-  ! shift/reduce conflict for COMMA resolved as shift
-    CB              reduce using rule 3 (expression -> expression IMPLIES expression .)
-    $end            reduce using rule 3 (expression -> expression IMPLIES expression .)
-    AND             shift and go to state 6
-    OR              shift and go to state 9
-    IMPLIES         shift and go to state 7
-    COMMA           shift and go to state 8
-
-  ! AND             [ reduce using rule 3 (expression -> expression IMPLIES expression .) ]
-  ! OR              [ reduce using rule 3 (expression -> expression IMPLIES expression .) ]
-  ! IMPLIES         [ reduce using rule 3 (expression -> expression IMPLIES expression .) ]
-  ! COMMA           [ reduce using rule 3 (expression -> expression IMPLIES expression .) ]
+    CB              shift and go to state 18
+    COMMA           shift and go to state 6
 
 
 state 16
 
-    (8) expression -> expression COMMA expression .
-    (1) expression -> expression . AND expression
-    (2) expression -> expression . OR expression
-    (3) expression -> expression . IMPLIES expression
-    (8) expression -> expression . COMMA expression
+    (2) expression -> OB expression AND expression CB .
 
-  ! shift/reduce conflict for AND resolved as shift
-  ! shift/reduce conflict for OR resolved as shift
-  ! shift/reduce conflict for IMPLIES resolved as shift
-  ! shift/reduce conflict for COMMA resolved as shift
-    CB              reduce using rule 8 (expression -> expression COMMA expression .)
-    $end            reduce using rule 8 (expression -> expression COMMA expression .)
-    AND             shift and go to state 6
-    OR              shift and go to state 9
-    IMPLIES         shift and go to state 7
-    COMMA           shift and go to state 8
-
-  ! AND             [ reduce using rule 8 (expression -> expression COMMA expression .) ]
-  ! OR              [ reduce using rule 8 (expression -> expression COMMA expression .) ]
-  ! IMPLIES         [ reduce using rule 8 (expression -> expression COMMA expression .) ]
-  ! COMMA           [ reduce using rule 8 (expression -> expression COMMA expression .) ]
+    CB              reduce using rule 2 (expression -> OB expression AND expression CB .)
+    COMMA           reduce using rule 2 (expression -> OB expression AND expression CB .)
+    OR              reduce using rule 2 (expression -> OB expression AND expression CB .)
+    AND             reduce using rule 2 (expression -> OB expression AND expression CB .)
+    IMPLIES         reduce using rule 2 (expression -> OB expression AND expression CB .)
+    $end            reduce using rule 2 (expression -> OB expression AND expression CB .)
 
 
 state 17
 
-    (2) expression -> expression OR expression .
-    (1) expression -> expression . AND expression
-    (2) expression -> expression . OR expression
-    (3) expression -> expression . IMPLIES expression
-    (8) expression -> expression . COMMA expression
+    (3) expression -> OB expression IMPLIES expression CB .
 
-  ! shift/reduce conflict for AND resolved as shift
-  ! shift/reduce conflict for OR resolved as shift
-  ! shift/reduce conflict for IMPLIES resolved as shift
-  ! shift/reduce conflict for COMMA resolved as shift
-    CB              reduce using rule 2 (expression -> expression OR expression .)
-    $end            reduce using rule 2 (expression -> expression OR expression .)
-    AND             shift and go to state 6
-    OR              shift and go to state 9
-    IMPLIES         shift and go to state 7
-    COMMA           shift and go to state 8
-
-  ! AND             [ reduce using rule 2 (expression -> expression OR expression .) ]
-  ! OR              [ reduce using rule 2 (expression -> expression OR expression .) ]
-  ! IMPLIES         [ reduce using rule 2 (expression -> expression OR expression .) ]
-  ! COMMA           [ reduce using rule 2 (expression -> expression OR expression .) ]
+    CB              reduce using rule 3 (expression -> OB expression IMPLIES expression CB .)
+    COMMA           reduce using rule 3 (expression -> OB expression IMPLIES expression CB .)
+    OR              reduce using rule 3 (expression -> OB expression IMPLIES expression CB .)
+    AND             reduce using rule 3 (expression -> OB expression IMPLIES expression CB .)
+    IMPLIES         reduce using rule 3 (expression -> OB expression IMPLIES expression CB .)
+    $end            reduce using rule 3 (expression -> OB expression IMPLIES expression CB .)
 
 
 state 18
 
-    (7) expression -> NAME OB expression CB .
+    (1) expression -> OB expression OR expression CB .
 
-    CB              reduce using rule 7 (expression -> NAME OB expression CB .)
-    AND             reduce using rule 7 (expression -> NAME OB expression CB .)
-    OR              reduce using rule 7 (expression -> NAME OB expression CB .)
-    IMPLIES         reduce using rule 7 (expression -> NAME OB expression CB .)
-    COMMA           reduce using rule 7 (expression -> NAME OB expression CB .)
-    $end            reduce using rule 7 (expression -> NAME OB expression CB .)
-
-
-state 19
-
-    (5) expression -> OB expression AND expression . CB
-    (1) expression -> expression AND expression .
-    (1) expression -> expression . AND expression
-    (2) expression -> expression . OR expression
-    (3) expression -> expression . IMPLIES expression
-    (8) expression -> expression . COMMA expression
-
-  ! shift/reduce conflict for AND resolved as shift
-  ! shift/reduce conflict for OR resolved as shift
-  ! shift/reduce conflict for IMPLIES resolved as shift
-  ! shift/reduce conflict for COMMA resolved as shift
-    CB              shift and go to state 22
-    AND             shift and go to state 6
-    OR              shift and go to state 9
-    IMPLIES         shift and go to state 7
-    COMMA           shift and go to state 8
-
-  ! OR              [ reduce using rule 1 (expression -> expression AND expression .) ]
-  ! AND             [ reduce using rule 1 (expression -> expression AND expression .) ]
-  ! IMPLIES         [ reduce using rule 1 (expression -> expression AND expression .) ]
-  ! COMMA           [ reduce using rule 1 (expression -> expression AND expression .) ]
-
-
-state 20
-
-    (6) expression -> OB expression IMPLIES expression . CB
-    (3) expression -> expression IMPLIES expression .
-    (1) expression -> expression . AND expression
-    (2) expression -> expression . OR expression
-    (3) expression -> expression . IMPLIES expression
-    (8) expression -> expression . COMMA expression
-
-  ! shift/reduce conflict for AND resolved as shift
-  ! shift/reduce conflict for OR resolved as shift
-  ! shift/reduce conflict for IMPLIES resolved as shift
-  ! shift/reduce conflict for COMMA resolved as shift
-    CB              shift and go to state 23
-    AND             shift and go to state 6
-    OR              shift and go to state 9
-    IMPLIES         shift and go to state 7
-    COMMA           shift and go to state 8
-
-  ! OR              [ reduce using rule 3 (expression -> expression IMPLIES expression .) ]
-  ! AND             [ reduce using rule 3 (expression -> expression IMPLIES expression .) ]
-  ! IMPLIES         [ reduce using rule 3 (expression -> expression IMPLIES expression .) ]
-  ! COMMA           [ reduce using rule 3 (expression -> expression IMPLIES expression .) ]
-
-
-state 21
-
-    (4) expression -> OB expression OR expression . CB
-    (2) expression -> expression OR expression .
-    (1) expression -> expression . AND expression
-    (2) expression -> expression . OR expression
-    (3) expression -> expression . IMPLIES expression
-    (8) expression -> expression . COMMA expression
-
-  ! shift/reduce conflict for AND resolved as shift
-  ! shift/reduce conflict for OR resolved as shift
-  ! shift/reduce conflict for IMPLIES resolved as shift
-  ! shift/reduce conflict for COMMA resolved as shift
-    CB              shift and go to state 24
-    AND             shift and go to state 6
-    OR              shift and go to state 9
-    IMPLIES         shift and go to state 7
-    COMMA           shift and go to state 8
-
-  ! OR              [ reduce using rule 2 (expression -> expression OR expression .) ]
-  ! AND             [ reduce using rule 2 (expression -> expression OR expression .) ]
-  ! IMPLIES         [ reduce using rule 2 (expression -> expression OR expression .) ]
-  ! COMMA           [ reduce using rule 2 (expression -> expression OR expression .) ]
-
-
-state 22
-
-    (5) expression -> OB expression AND expression CB .
-
-    CB              reduce using rule 5 (expression -> OB expression AND expression CB .)
-    AND             reduce using rule 5 (expression -> OB expression AND expression CB .)
-    OR              reduce using rule 5 (expression -> OB expression AND expression CB .)
-    IMPLIES         reduce using rule 5 (expression -> OB expression AND expression CB .)
-    COMMA           reduce using rule 5 (expression -> OB expression AND expression CB .)
-    $end            reduce using rule 5 (expression -> OB expression AND expression CB .)
-
-
-state 23
-
-    (6) expression -> OB expression IMPLIES expression CB .
-
-    CB              reduce using rule 6 (expression -> OB expression IMPLIES expression CB .)
-    AND             reduce using rule 6 (expression -> OB expression IMPLIES expression CB .)
-    OR              reduce using rule 6 (expression -> OB expression IMPLIES expression CB .)
-    IMPLIES         reduce using rule 6 (expression -> OB expression IMPLIES expression CB .)
-    COMMA           reduce using rule 6 (expression -> OB expression IMPLIES expression CB .)
-    $end            reduce using rule 6 (expression -> OB expression IMPLIES expression CB .)
-
-
-state 24
-
-    (4) expression -> OB expression OR expression CB .
-
-    CB              reduce using rule 4 (expression -> OB expression OR expression CB .)
-    AND             reduce using rule 4 (expression -> OB expression OR expression CB .)
-    OR              reduce using rule 4 (expression -> OB expression OR expression CB .)
-    IMPLIES         reduce using rule 4 (expression -> OB expression OR expression CB .)
-    COMMA           reduce using rule 4 (expression -> OB expression OR expression CB .)
-    $end            reduce using rule 4 (expression -> OB expression OR expression CB .)
+    CB              reduce using rule 1 (expression -> OB expression OR expression CB .)
+    COMMA           reduce using rule 1 (expression -> OB expression OR expression CB .)
+    OR              reduce using rule 1 (expression -> OB expression OR expression CB .)
+    AND             reduce using rule 1 (expression -> OB expression OR expression CB .)
+    IMPLIES         reduce using rule 1 (expression -> OB expression OR expression CB .)
+    $end            reduce using rule 1 (expression -> OB expression OR expression CB .)
 
 WARNING: 
 WARNING: Conflicts:
 WARNING: 
-WARNING: shift/reduce conflict for AND in state 14 resolved as shift
-WARNING: shift/reduce conflict for OR in state 14 resolved as shift
-WARNING: shift/reduce conflict for IMPLIES in state 14 resolved as shift
-WARNING: shift/reduce conflict for COMMA in state 14 resolved as shift
-WARNING: shift/reduce conflict for AND in state 15 resolved as shift
-WARNING: shift/reduce conflict for OR in state 15 resolved as shift
-WARNING: shift/reduce conflict for IMPLIES in state 15 resolved as shift
-WARNING: shift/reduce conflict for COMMA in state 15 resolved as shift
-WARNING: shift/reduce conflict for AND in state 16 resolved as shift
-WARNING: shift/reduce conflict for OR in state 16 resolved as shift
-WARNING: shift/reduce conflict for IMPLIES in state 16 resolved as shift
-WARNING: shift/reduce conflict for COMMA in state 16 resolved as shift
-WARNING: shift/reduce conflict for AND in state 17 resolved as shift
-WARNING: shift/reduce conflict for OR in state 17 resolved as shift
-WARNING: shift/reduce conflict for IMPLIES in state 17 resolved as shift
-WARNING: shift/reduce conflict for COMMA in state 17 resolved as shift
-WARNING: shift/reduce conflict for AND in state 19 resolved as shift
-WARNING: shift/reduce conflict for OR in state 19 resolved as shift
-WARNING: shift/reduce conflict for IMPLIES in state 19 resolved as shift
-WARNING: shift/reduce conflict for COMMA in state 19 resolved as shift
-WARNING: shift/reduce conflict for AND in state 20 resolved as shift
-WARNING: shift/reduce conflict for OR in state 20 resolved as shift
-WARNING: shift/reduce conflict for IMPLIES in state 20 resolved as shift
-WARNING: shift/reduce conflict for COMMA in state 20 resolved as shift
-WARNING: shift/reduce conflict for AND in state 21 resolved as shift
-WARNING: shift/reduce conflict for OR in state 21 resolved as shift
-WARNING: shift/reduce conflict for IMPLIES in state 21 resolved as shift
-WARNING: shift/reduce conflict for COMMA in state 21 resolved as shift
+WARNING: shift/reduce conflict for COMMA in state 11 resolved as shift

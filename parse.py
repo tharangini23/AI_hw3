@@ -11,40 +11,44 @@ t_COMMA=r','
 
 def t_NAME(t):
     r'[a-z]+'
-    print(t.value,"name")
+    #print(t.value,"name")
     return t
-'''
-def p_arguments(p):
-    """
-    arguments : NAME COMMA NAME
-    """
-'''
+
 
 
 def p_expression(p):
-    """expression : expression AND expression
-                  | expression OR expression
-                  | expression IMPLIES expression
-                  | OB expression OR expression CB
+    """expression :  OB expression OR expression CB
                   | OB expression AND expression CB
                   | OB expression IMPLIES expression CB
-    """
-    print(p[0],p[1],p[2],p[3])
 
-    print(p[1])
-    p[0] = p[1]
+    """
+    if(p[3]=='=>'):
+        p[0] = '('+'~'+p[2]+'|'+ p[4]+')'
+        #print(a)
+    else:
+        p[0]=p[1]+p[2]+p[3]+p[4]+p[5]
     return p[0]
 def p_predicate(p):
     """expression : NAME OB expression CB
     """
-    print(p[1])
-    p[0]=p[1]
+    print("predicate",p[0],p[1],p[2],p[3],p[4])
+    p[0]=p[1]+p[2]+p[3]+p[4]
 def p_arguments(p):
     """
     expression : expression COMMA expression
-               | NAME
     """
+    #print(p.lexer.type,'l')
+    if(len(p)>2):
+        print("arguments",p[0],p[1],p[2],p[3])
+        p[0]=p[1]+p[2]+p[3]
+def p_name(p):
+    """
+    expression : NAME
+    """
+    #print("name",p[1])
+    p[0]=p[1]
 lexer = lex.lex()
 parser = yacc.yacc()
-res = parser.parse("a(c,a,x)&b(a)")
+res = parser.parse("(((a(x)&d(o))=>b(y))=>c(z))")
 print(res)
+#(predicate(aq,ar,aw,hg,yt)=>pcate(bw))
