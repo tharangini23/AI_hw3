@@ -5,9 +5,9 @@ _tabversion = '3.8'
 
 _lr_method = 'LALR'
 
-_lr_signature = '04D2907C95C5A3349BF508660B498B28'
+_lr_signature = '984B181CB3B7606C64DD8495F2EEAB8C'
     
-_lr_action_items = {'AND':([1,5,11,12,16,17,18,],[-6,8,-5,-4,-2,-3,-1,]),'IMPLIES':([1,5,11,12,16,17,18,],[-6,9,-5,-4,-2,-3,-1,]),'NAME':([0,2,4,6,8,9,10,],[1,1,1,1,1,1,1,]),'CB':([1,7,11,12,13,14,15,16,17,18,],[-6,12,-5,-4,16,17,18,-2,-3,-1,]),'OB':([0,1,2,4,6,8,9,10,],[2,4,2,2,2,2,2,2,]),'COMMA':([1,3,5,7,11,12,13,14,15,16,17,18,],[-6,6,6,6,6,-4,6,6,6,-2,-3,-1,]),'OR':([1,5,11,12,16,17,18,],[-6,10,-5,-4,-2,-3,-1,]),'$end':([1,3,11,12,16,17,18,],[-6,0,-5,-4,-2,-3,-1,]),}
+_lr_action_items = {'AND':([1,6,13,14,15,19,20,21,],[-7,10,-6,-5,-4,-2,-3,-1,]),'IMPLIES':([1,6,13,14,15,19,20,21,],[-7,11,-6,-5,-4,-2,-3,-1,]),'NAME':([0,2,4,5,7,10,11,12,],[1,1,1,1,1,1,1,1,]),'CB':([1,8,9,13,14,15,16,17,18,19,20,21,],[-7,14,15,-6,-5,-4,19,20,21,-2,-3,-1,]),'OB':([0,1,2,4,5,7,10,11,12,],[2,4,2,2,2,2,2,2,2,]),'COMMA':([1,3,6,8,9,13,14,15,16,17,18,19,20,21,],[-7,7,7,7,7,7,-5,-4,7,7,7,-2,-3,-1,]),'NOT':([2,],[5,]),'OR':([1,6,13,14,15,19,20,21,],[-7,12,-6,-5,-4,-2,-3,-1,]),'$end':([1,3,13,14,15,19,20,21,],[-7,0,-6,-5,-4,-2,-3,-1,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -16,7 +16,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'expression':([0,2,4,6,8,9,10,],[3,5,7,11,13,14,15,]),}
+_lr_goto_items = {'expression':([0,2,4,5,7,10,11,12,],[3,6,8,9,13,16,17,18,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -26,10 +26,11 @@ for _k, _v in _lr_goto_items.items():
 del _lr_goto_items
 _lr_productions = [
   ("S' -> expression","S'",1,None,None,None),
-  ('expression -> OB expression OR expression CB','expression',5,'p_expression','parse.py',20),
-  ('expression -> OB expression AND expression CB','expression',5,'p_expression','parse.py',21),
-  ('expression -> OB expression IMPLIES expression CB','expression',5,'p_expression','parse.py',22),
-  ('expression -> NAME OB expression CB','expression',4,'p_predicate','parse.py',32),
-  ('expression -> expression COMMA expression','expression',3,'p_arguments','parse.py',38),
-  ('expression -> NAME','expression',1,'p_name','parse.py',46),
+  ('expression -> OB expression OR expression CB','expression',5,'p_expression','parse.py',23),
+  ('expression -> OB expression AND expression CB','expression',5,'p_expression','parse.py',24),
+  ('expression -> OB expression IMPLIES expression CB','expression',5,'p_expression','parse.py',25),
+  ('expression -> OB NOT expression CB','expression',4,'p_expression','parse.py',26),
+  ('expression -> NAME OB expression CB','expression',4,'p_predicate','parse.py',36),
+  ('expression -> expression COMMA expression','expression',3,'p_arguments','parse.py',42),
+  ('expression -> NAME','expression',1,'p_name','parse.py',50),
 ]
