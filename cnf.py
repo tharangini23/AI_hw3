@@ -318,7 +318,7 @@ def distributeOR(logic):
                 result.append(parseDistribution(['or', logic[1], logic[2][1]]))
                 result.append(parseDistribution(['or', logic[1], logic[2][2]]))
 
-
+    print(result)
     return simplify(result)
 
 #------------------------------------------------------#
@@ -539,7 +539,6 @@ with open(inputfilename) as f:
     number_of_sentences = int(f.readline().strip())
     #read that many sentences
     for line in islice(f, 0, number_of_sentences):
-        print(line)
         cnf = str(parseLogic(eval(line.strip()))).replace("'", "\"")
 
         if len(cnf) == 1:

@@ -1,7 +1,7 @@
 import re
 #returns list where first element is predicate name and second list of arguments
 PredicateTable={}
-def ReturnPredicateNameAndArgList(Input):
+def ReturnPredicateNameAndArgList1(Input):
     #                 12  2         1   34        4        3
     PredicatePattern='((~?)[a-zA-Z]+)\((([a-zA-Z]+,)*[a-zA-Z])\)'
     m=re.match(PredicatePattern,Input)
@@ -20,6 +20,7 @@ def ReturnPredicateNameAndArgList(Input):
         l=[]
     print(PredicateTable)
     return l
+'''
 def Tell():
     pass
 def Ask():
@@ -64,12 +65,29 @@ def CNF(Input):
         m2=re.sub(pattern1,'~'+pattern1m1)
 
 
+'''
 
 
 
+
+def ReturnPredicateName(Input):
+    #                 1         1  2 3        3          2
+    PredicatePattern='([a-zA-Z]+)\((([a-zA-Z]+,)*[a-zA-Z])\)'
+    m=re.match(PredicatePattern,Input)
+    l=[]
+    if(m):
+       return m.group(1)
+    else:return ""
+def ReturnArgList(Input):
+    #                 1         1  2 3        3          2
+    PredicatePattern='([a-zA-Z]+)\((([a-zA-Z]+,)*[a-zA-Z])\)'
+    m=re.match(PredicatePattern,Input)
+    l=[]
+    if(m):
+        return list(m.group(2).split(','))
+    else :return []
 Subject=['A(x)','Bing(a,b)','C(l,)','A(z)']
 for i in Subject:
-    print(ReturnPredicateNameAndArgList(i))
+    print(ReturnPredicateName(i))
+    print(ReturnArgList(i))
 Subject2=['A(x)=>Bing(a,b)','C(l,)']
-for i in Subject2:
-    print(Implication(i))
