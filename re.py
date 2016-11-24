@@ -71,8 +71,8 @@ def CNF(Input):
 
 
 def ReturnPredicateName(Input):
-    #                 1         1  2 3        3          2
-    PredicatePattern='([a-zA-Z]+)\((([a-zA-Z]+,)*[a-zA-Z])\)'
+    #                 1         1
+    PredicatePattern='([a-zA-Z]+)\('
     m=re.match(PredicatePattern,Input)
     l=[]
     if(m):
@@ -80,13 +80,13 @@ def ReturnPredicateName(Input):
     else:return ""
 def ReturnArgList(Input):
     #                 1         1  2 3        3          2
-    PredicatePattern='([a-zA-Z]+)\((([a-zA-Z]+,)*[a-zA-Z])\)'
+    PredicatePattern='([a-zA-Z]+)\((([a-zA-Z]+,)*[a-zA-Z]*)\)'
     m=re.match(PredicatePattern,Input)
     l=[]
     if(m):
         return list(m.group(2).split(','))
     else :return []
-Subject=['A(x)','Bing(a,b)','C(l,)','A(z)']
+Subject=['Ajk(jjkj)','Bing(abkjkj,bkjk)','C(l,)','A(z)']
 for i in Subject:
     print(ReturnPredicateName(i))
     print(ReturnArgList(i))
